@@ -7,3 +7,7 @@ go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 # Clone the DirSearch repository
 echo "Cloning DirSearch repository..."
 git clone https://github.com/maurosoria/dirsearch.git --depth 1
+
+# Install Waybackurls using Go
+echo "Installing Waybackurls..."
+go install github.com/tomnomnom/waybackurls@latest
