@@ -14,9 +14,9 @@ target_ip() {
 get_vpn_ip() {
     vpn_ip=$(ip a show tun0 2>/dev/null | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1)
     if [ -n "$vpn_ip" ]; then
-        echo "🛜 $vpn_ip"
+        echo "🔒 $vpn_ip"
     else
-        echo "🛜 Disconnected"
+        echo "🔒 Disconnected "
     fi
 }
 
@@ -69,10 +69,14 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\][$(get_vpn_ip)]\[\033[00m\] \[\033[01;35m\][🎯 $TARGET_IP]\[\033[00m\]\n\[\033[01;34m\]└─\[\033[31m\]\$ \[\033[00m\]'
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]: \[\033[01;37m\]\w\[\033[00m\] \[\033[01;31m\][$(get_vpn_ip)]\[\033[00m\] \[\033[01;37m\][💀 $TARGET_IP]\[\033[00m\]\n\[\033[01;31m\]└─\[\033[31m\]❯ \[\033[00m\]'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\w \[\033[01;33m\][$(get_vpn_ip)]\[\033[00m\] \[\033[01;35m\][🎯 $TARGET_IP]\[\033[00m\]\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]: \w \[\033[01;31m\][$(get_vpn_ip)]\[\033[00m\] \[\033[01;37m\][💀 $TARGET_IP]\[\033[00m\]\n\$ '
 fi
+
+
+
+
 
 unset color_prompt force_color_prompt
 
